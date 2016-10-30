@@ -1,0 +1,20 @@
+<form novalidate name="addTeamForm" ng-submit="addTeam(addTeamForm.$valid)">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">Add a Team</span>
+        </div>
+        <div class="card-action">
+            <div class="row">
+                <div class="input-field col m6 s12">
+                    <input type="number" id="number" ng-model="team.number" class="validate" required />
+                    <label for="number">Table Number</label>
+                </div>
+                <div class="input-field col m6 s12">
+                    <input type="text" id="name" ng-model="team.name" class="validate" required />
+                    <label for="name">Team Name</label>
+                </div>
+            </div>
+            <button type="submit" ng-disabled="addTeamForm.$invalid" class="btn green"><i class="material-icons">done</i></button>
+        </div>
+    </div>
+</form>

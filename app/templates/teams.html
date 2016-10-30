@@ -1,0 +1,31 @@
+<div ng-controller="teamsController">
+    <h3>
+        Teams
+    </h3>
+    <br />
+    <div ui-view>
+        <button class="btn-large waves-light waves-effect green" ui-sref=".add">Add Team</button>
+    </div>
+    <br />
+    <div class="card-panel">
+        <table class="striped centered responsive-table">
+            <thead>
+            <tr><th>Table Number</th><th>Team Name</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="team in teams">
+                <td>
+                    {{team.number}}
+                </td>
+                <td>
+                    {{team.name}}
+                </td>
+                <td>
+                    <button class="btn orange"><i class="material-icons">edit</i></button>
+                    <button class="btn red"><i class="material-icons">delete</i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

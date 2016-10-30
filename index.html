@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Score Master</title>
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="scoreLynx" ng-controller="mainController">
+    <nav>
+        <div class="nav-wrapper cyan">
+            <a href="#" class="brand-logo center">ScoreLynx</a>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a ui-sref="teams">Teams</a></li>
+                <li><a ui-sref="rounds">Rounds</a></li>
+                <li><a ui-sref="scores">Scores</a></li>
+            </ul>
+            <ul class="side-nav" id="nav-mobile">
+                <li><a ui-sref="teams">Teams</a></li>
+                <li><a ui-sref="rounds">Rounds</a></li>
+                <li><a ui-sref="scores">Scores</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" ui-view>
+
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script>
+        $(".button-collapse").sideNav();
+    </script>
+</body>
+</html>
