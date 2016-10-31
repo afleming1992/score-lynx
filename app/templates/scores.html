@@ -1,13 +1,30 @@
-<h3>Scoreboard</h3>
-<table class="striped">
-    <thead>
-        <tr>
-            <th>Position</th><td>Team Name</td><td>Total Score</td><td>Round 1</td><td>Round 2</td><td>Picture Round</td><td>Round 3</td><td>Round 4</td><td>Round 5</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
+<div ng-controller="scoresController">
+    <h3>Scoreboard</h3>
+    <div ui-view>
+        <button ui-sref=".update" class="btn green">Update Scores</button>
+    </div>
+    <table class="striped centered">
+        <thead>
+            <tr>
+                <td style="text-align:center;">Position</td>
+                <td style="text-align:center;">Team Name</td>
+                <td style="text-align:center;">Total Score</td>
+                <td style="text-align:center;"> - </td>
+                <td ng-repeat="round in rounds" style="text-align:center;">
+                    {{round.name}}
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="team in teams">
+                <td>{{$index + 1}}</td>
+                <td>{{team.name}}</td>
+                <td>{{team.score}}</td>
+                <td> - </td>
+                <td ng-repeat="round in rounds">
 
-        </tr>
-    </tbody>
-</table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

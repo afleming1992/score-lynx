@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Score Master</title>
+    <title>ScoreLynx - Simple, Easy Quiz Scoring</title>
     <link rel="stylesheet" href="css/materialize.min.css">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet" />
@@ -10,9 +10,17 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="app.js"></script>
 </head>
 <body ng-app="scoreLynx" ng-controller="mainController">
+    <ul id="settings-dropdown" class="dropdown-content">
+        <li><a href="#!" ng-click="resetTeams()">Clear Teams</a></li>
+        <li><a href="#!">Clear Rounds</a></li>
+        <li class="divider"></li>
+        <li><a href="#!" ng-click="resetGame()">Clear Everything</a></li>
+    </ul>
     <nav>
         <div class="nav-wrapper cyan">
             <a href="#" class="brand-logo center">ScoreLynx</a>
@@ -21,21 +29,28 @@
                 <li><a ui-sref="teams">Teams</a></li>
                 <li><a ui-sref="rounds">Rounds</a></li>
                 <li><a ui-sref="scores">Scores</a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="settings-dropdown">Settings<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
             <ul class="side-nav" id="nav-mobile">
                 <li><a ui-sref="teams">Teams</a></li>
                 <li><a ui-sref="rounds">Rounds</a></li>
                 <li><a ui-sref="scores">Scores</a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="settings-dropdown">Settings<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </div>
     </nav>
     <div class="container" ui-view>
 
     </div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
     <script src="js/materialize.min.js"></script>
     <script>
-        $(".button-collapse").sideNav();
+
+        $(document).ready(function(){
+            $(".dropdown-button").dropdown({ hover: false });
+            $(".button-collapse").sideNav();
+        });
+
     </script>
 </body>
 </html>

@@ -1,0 +1,30 @@
+<form novalidate name="updateScoresForm" ng-submit="updateScores()">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">Updates Scores</span>
+        </div>
+        <div class="card-action">
+            <div class="row">
+                <div class="col m6 s12">
+                    <label>Select Round</label>
+                    <select ng-model="scoreUpdate.round" class="browser-default" required>
+                        <option ng-repeat="round in rounds" value="{{round.number}}"> {{round.number}} - {{round.name}}</option>
+                    </select>
+                </div>
+                <div class="col m6 s12">
+                    <label>Select Team</label>
+                    <select class="browser-default" ng-model="scoreUpdate.team" required>
+                        <option ng-repeat="team in teams" value="{{team.number}}">{{team.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" ng-hide="scoreUpdate.team == null">
+                <div class="col m12 s12 input-field">
+                    <input type="number" ng-model="updateScore.score" required />
+                    <label>Number of Points Awarded</label>
+                </div>
+            </div>
+            <button type="submit" ng-disabled="updateScoresForm.$invalid" class="btn green"><i class="material-icons">done</i></button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,30 @@
+<div ng-controller="roundsController">
+    <h3>
+        Rounds
+    </h3>
+    <br />
+    <div ui-view>
+        <button class="btn-large waves-light waves-effect green" ui-sref=".add">Add Round</button>
+    </div>
+    <br />
+    <div class="card-panel">
+        <table class="striped centered responsive-table">
+            <thead>
+            <tr><th>Round Number</th><th>Round Name</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="round in rounds | orderBy:'number'">
+                <td>
+                    {{round.number}}
+                </td>
+                <td>
+                    {{round.name}}
+                </td>
+                <td>
+                    <button ng-click="deleteRound(round)" class="btn red"><i class="material-icons">delete</i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
