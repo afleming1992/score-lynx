@@ -8,12 +8,12 @@
     </div>
     <br />
     <div class="card-panel">
-        <table class="striped centered responsive-table">
+        <table class="striped centered">
             <thead>
             <tr><th>Table Number</th><th>Team Name</th><th>Actions</th></tr>
             </thead>
             <tbody>
-            <tr ng-repeat="team in teams">
+            <tr ng-repeat="team in teams | orderBy:'number'">
                 <td>
                     {{team.number}}
                 </td>
