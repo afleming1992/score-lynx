@@ -16,13 +16,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="team in teams">
+            <tr ng-repeat="team in teams | orderBy:'-score'">
                 <td>{{$index + 1}}</td>
                 <td>{{team.name}}</td>
                 <td>{{team.score}}</td>
                 <td> - </td>
                 <td ng-repeat="round in rounds">
-
+                    {{team.rounds[round.number].score}}
                 </td>
             </tr>
         </tbody>

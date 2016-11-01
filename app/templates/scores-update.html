@@ -1,4 +1,4 @@
-<form novalidate name="updateScoresForm" ng-submit="updateScores()">
+<form novalidate name="updateScoresForm" ng-submit="updateScore()">
     <div class="card">
         <div class="card-content">
             <span class="card-title">Updates Scores</span>
@@ -20,7 +20,7 @@
             </div>
             <div class="row" ng-hide="scoreUpdate.team == null">
                 <div class="col m12 s12 input-field">
-                    <input type="number" ng-model="updateScore.score" required />
+                    <input type="number" ng-model="scoreUpdate.score" required />
                     <label>Number of Points Awarded</label>
                 </div>
             </div>

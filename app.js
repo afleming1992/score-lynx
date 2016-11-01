@@ -41,9 +41,19 @@ app.run(function($rootScope, $localStorage, $filter){
         rounds: []
     });
 
+    $rootScope.addTeam = function(team){
+        $rootScope.storage.teams.push(team);
+    };
+
     $rootScope.findTeam = function(tableNumber){
         return $filter("filter")($rootScope.storage.teams, {number:tableNumber});
     };
+
+    $rootScope.updateTeam = function(old, updated)
+    {
+        $rootScope.removeTeam(old);
+        $rootScope.addTeam(updated);
+    }
 
     $rootScope.removeTeam = function(team){
         var index = $rootScope.storage.teams.indexOf(team);
@@ -86,20 +96,64 @@ app.controller('mainController', function(){
 
 });
 
-app.controller("scoresController", function($rootScope, $scope, $state){
+app.controller("scoresController", function($rootScope, $scope, $state, $filter){
 
     $scope.teams = $rootScope.storage.teams;
     $scope.rounds = $rootScope.storage.rounds;
+    $scope.updatedTeam = {};
+    $scope.scoreUpdate = {};
 
     function updateScore()
     {
         var originalTeam = $rootScope.findTeam($scope.scoreUpdate.team);
         if(originalTeam != null)
         {
-            //TODO Finish this off
+            var updatedTeam = originalTeam[0];
+            var round = {"round": $scope.scoreUpdate.round, "score": $scope.scoreUpdate.score};
+
+            if(updatedTeam.rounds == null)
+            {
+                updatedTeam.rounds = [];
+            }
+            else
+            {
+                alert(findAndRemoveRound(updatedTeam.rounds, $scope.scoreUpdate.round));
+            }
+
+            updatedTeam.rounds[$scope.scoreUpdate.round] = (round);
+            var totalScore = 0;
+
+            updatedTeam.rounds.forEach(function(round){
+                totalScore = totalScore + round.score;
+            });
+
+            updatedTeam.score = totalScore;
+
+            $rootScope.updateTeam(originalTeam[0],updatedTeam);
+        }
+        else
+        {
+            Materialize.toast("Failed to Find Team! Have they been deleted?", 4000);
         }
     }
 
+    function findAndRemoveRound(rounds, roundId)
+    {
+        var round = $filter("filter")(rounds, {round: roundId});
+        if(round != null)
+        {
+            var index = rounds.indexOf(round[0]);
+            if(index != -1)
+            {
+                rounds.splice(index,1);
+            }
+        }
+        return rounds
+    }
+
+    $scope.updateScore = function(){
+        updateScore();
+    };
 });
 
 app.controller("teamsController", function($rootScope, $scope, $state){
@@ -112,7 +166,7 @@ app.controller("teamsController", function($rootScope, $scope, $state){
     {
         $scope.team.score = 0;
         $scope.team.rounds = [];
-        $rootScope.storage.teams.push($scope.team);
+        $rootScope.addTeam($scope.team);
         $state.transitionTo("teams");
         Materialize.toast('Team ' + $scope.team.name + ' Added', 4000);
         $scope.team = {};
