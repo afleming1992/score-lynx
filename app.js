@@ -117,19 +117,25 @@ app.controller("scoresController", function($rootScope, $scope, $state, $filter)
             }
             else
             {
-                alert(findAndRemoveRound(updatedTeam.rounds, $scope.scoreUpdate.round));
+                findAndRemoveRound(updatedTeam.rounds, $scope.scoreUpdate.round);
             }
 
             updatedTeam.rounds[$scope.scoreUpdate.round] = (round);
             var totalScore = 0;
 
             updatedTeam.rounds.forEach(function(round){
-                totalScore = totalScore + round.score;
+                if(round != null)
+                {
+                    totalScore = totalScore + round.score;
+                }
             });
 
             updatedTeam.score = totalScore;
 
             $rootScope.updateTeam(originalTeam[0],updatedTeam);
+            Materialize.toast(updatedTeam.name +"'s Score has been Updated!",4000,"green");
+            $scope.scoreUpdate.score = null;
+            $scope.scoreUpdate.team = "";
         }
         else
         {
